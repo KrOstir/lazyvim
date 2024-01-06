@@ -6,3 +6,6 @@
 vim.opt.spell = true
 -- Set spelllang to US English and Slovenian
 vim.opt.spelllang = "en,sl"
+
+-- Set word wrap
+vim.opt.wrap = true
