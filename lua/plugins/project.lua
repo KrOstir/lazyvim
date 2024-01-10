@@ -9,7 +9,7 @@ return {
       "~/PowerShell/*",
       "~/PowerShell/*",
       "~/Programing/*",
-      "~/Python/*",
+      "~/*ython/*",
     },
   },
   init = function()
