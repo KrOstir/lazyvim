@@ -9,6 +9,3 @@ vim.opt.spelllang = "en,sl"
 
 -- Set word wrap
 vim.opt.wrap = true
-
--- Python3 provider
-vim.g.python3_host_prog = "C:/Users/krost/miniforge3/envs/nvim/python.exe"
