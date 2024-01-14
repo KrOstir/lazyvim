@@ -24,8 +24,8 @@ return {
   lazy = false,
   priority = 100,
   keys = {
-    { "<leader>sp", "<cmd>Telescope neovim-project discover<cr>", desc = "Project Discover" },
-    { "<leader>sP", "<cmd>Telescope neovim-project history<cr>", desc = "Project History" },
+    { "<leader>sp", "<cmd>Telescope neovim-project history<cr>", desc = "Project History" },
+    { "<leader>sP", "<cmd>Telescope neovim-project discover<cr>", desc = "Project Discover" },
     { "<leader>sq", "<cmd>NeovimProjectLoadRecent<cr>", desc = "Project Recent" },
   },
 }
