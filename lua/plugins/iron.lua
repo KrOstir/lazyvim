@@ -1,5 +1,5 @@
 return {
-  "Vigenus/iron.nvim",
+  "Vigemus/iron.nvim",
   cmd = {
     "IronRepl",
     "IronReplHere",
