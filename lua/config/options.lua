@@ -9,3 +9,6 @@ vim.opt.spelllang = "en,sl"
 
 -- Set word wrap
 vim.opt.wrap = true
+
+-- Python3 provider
+vim.g.python3_host_prog = '/usr/bin/python3'
