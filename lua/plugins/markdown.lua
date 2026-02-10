@@ -1,11 +1,19 @@
+-- Markview
 return {
   {
-    "iamcco/markdown-preview.nvim",
+    "OXY2DEV/markview.nvim",
     ft = { "markdown" },
-    pin = true, -- critical: stop Lazy update checks
-    build = function()
-      local app = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
-      vim.fn.system({ "npm", "install", "--prefix", app, "--no-audit", "--no-fund" })
+    config = function()
+      require("markview").setup({
+        preview = {
+          enable = false, -- 👈 start disabled
+        },
+      })
+
+      -- use commands (works even when Lua helpers differ)
+      vim.keymap.set("n", "<leader>mv", "<cmd>Markview toggle<cr>", { desc = "Toggle Markview" })
+      vim.keymap.set("n", "<leader>me", "<cmd>Markview enable<cr>", { desc = "Enable Markview" })
+      vim.keymap.set("n", "<leader>md", "<cmd>Markview disable<cr>", { desc = "Disable Markview" })
     end,
   },
 }
