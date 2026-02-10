@@ -15,7 +15,7 @@ return {
               command = { "zsh" },
             },
             python = {
-              command = { "python" },
+              command = { "python3" },
             },
           },
           -- How the repl window will be displayed
@@ -46,6 +46,41 @@ return {
         },
         ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       })
+      
+      -- Send cell block function
+      local function send_cell_block()
+        local iron = require("iron.core")
+        local current_line = vim.fn.line(".")
+        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+        
+        -- Find start of current cell
+        local cell_start = 1
+        for i = current_line, 1, -1 do
+          if lines[i]:match("^%s*# %%") then
+            cell_start = i
+            break
+          end
+        end
+        
+        -- Find end of current cell
+        local cell_end = #lines
+        for i = current_line, #lines do
+          if i > current_line and lines[i]:match("^%s*# %%") then
+            cell_end = i - 1
+            break
+          end
+        end
+        
+        -- Send the cell block
+        local cell_lines = {}
+        for i = cell_start, cell_end do
+          table.insert(cell_lines, lines[i])
+        end
+        iron.send(nil, cell_lines)
+      end
+      
+      vim.keymap.set("n", "<space>sb", send_cell_block)
+      
       -- iron also has a list of commands, see :h iron-commands for all available commands
       vim.keymap.set("n", "<space>rs", "<cmd>IronRepl<cr>")
       vim.keymap.set("n", "<space>rr", "<cmd>IronRestart<cr>")
