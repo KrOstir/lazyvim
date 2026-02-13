@@ -12,3 +12,19 @@ vim.opt.wrap = true
 
 -- Python3 provider
 vim.g.python3_host_prog = '/usr/bin/python3'
+
+-- Clipboard for plain WSL: Windows clipboard bridge
+vim.opt.clipboard = "unnamedplus"
+
+vim.g.clipboard = {
+  name = "wsl-clipboard",
+  copy = {
+    ["+"] = "clip.exe",
+    ["*"] = "clip.exe",
+  },
+  paste = {
+    ["+"] = { "bash", "-lc", "powershell.exe -NoProfile -Command Get-Clipboard -Raw | tr -d '\r'" },
+    ["*"] = { "bash", "-lc", "powershell.exe -NoProfile -Command Get-Clipboard -Raw | tr -d '\r'" },
+  },
+  cache_enabled = 0,
+}
