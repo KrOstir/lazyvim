@@ -1,3 +1,4 @@
+-- Iron plugin
 return {
   {
     "Vigemus/iron.nvim",
@@ -46,13 +47,13 @@ return {
         },
         ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       })
-      
+
       -- Send cell block function and jump to next
       local function send_cell_block_and_next()
         local iron = require("iron.core")
         local current_line = vim.fn.line(".")
         local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        
+
         -- Find start of current cell
         local cell_start = 1
         for i = current_line, 1, -1 do
@@ -61,7 +62,7 @@ return {
             break
           end
         end
-        
+
         -- Find end of current cell
         local cell_end = #lines
         for i = current_line, #lines do
@@ -70,17 +71,17 @@ return {
             break
           end
         end
-        
+
         -- Send the cell block, ignoring blank lines
         local cell_lines = {}
         for i = cell_start, cell_end do
           local line = lines[i]
-          if line:match("%S") then  -- Only add non-blank lines
+          if line:match("%S") then -- Only add non-blank lines
             table.insert(cell_lines, line)
           end
         end
         iron.send(nil, cell_lines)
-        
+
         -- Jump to next cell
         local next_cell = cell_end + 1
         for i = cell_end + 1, #lines do
@@ -91,9 +92,9 @@ return {
         end
         vim.fn.cursor(next_cell, 1)
       end
-      
+
       vim.keymap.set("n", "<space>sb", send_cell_block_and_next)
-      
+
       -- iron also has a list of commands, see :h iron-commands for all available commands
       vim.keymap.set("n", "<space>rs", "<cmd>IronRepl<cr>")
       vim.keymap.set("n", "<space>rr", "<cmd>IronRestart<cr>")

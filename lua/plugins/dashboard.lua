@@ -1,3 +1,4 @@
+-- Dashboard plugin
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
