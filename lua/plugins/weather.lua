@@ -11,7 +11,7 @@ return {
       settings = {
         update_interval = 60 * 10 * 1000, -- 10 minutes
         minimum_magnitude = 5,
-        location = { lat = 46.2389, lon = 14.3556 },
+        location = { lat = 46.251863, lon = 14.362136 },
         temperature_unit = "celsius",
       },
     })
